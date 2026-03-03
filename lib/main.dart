@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_banking_app/app_colors.dart';
 import 'package:mobile_banking_app/features/login/presentation/views/login2_view.dart';
-import 'package:mobile_banking_app/features/login/presentation/views/login_view.dart';
+//import 'package:mobile_banking_app/features/login/presentation/views/login_view.dart';
 
 void main() {
   runApp(const MainApp());

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_banking_app/features/dashboard/presentation/views/dashboard_view.dart';
 import 'package:mobile_banking_app/features/login/presentation/widgets/auth_footer.dart';
 import 'package:mobile_banking_app/features/login/presentation/widgets/email_field_widget.dart';
 import 'package:mobile_banking_app/features/login/presentation/widgets/password_field_widget.dart';
@@ -32,12 +33,12 @@ class LoginView2 extends StatelessWidget {
               EmailField(
                 controller: emailController,
                 validator: (value) {
-                  if (value == null || value.isEmpty) {
+                  /*  if (value == null || value.isEmpty) {
                     return 'Ingrese su email';
                   }
                   if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
                     return 'Email inválido';
-                  }
+                  } */
                   return null;
                 },
               ),
@@ -47,12 +48,12 @@ class LoginView2 extends StatelessWidget {
               PasswordField(
                 controller: passwordController,
                 validator: (value) {
-                  if (value == null || value.isEmpty) {
+                  /* if (value == null || value.isEmpty) {
                     return 'Ingrese su contraseña';
                   }
                   if (value.length < 6) {
                     return 'Mínimo 6 caracteres';
-                  }
+                  } */
                   return null;
                 },
               ),
@@ -65,6 +66,12 @@ class LoginView2 extends StatelessWidget {
                     String password = passwordController.text;
 
                     print('Email: $email, Password: $password');
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const DashboardView(),
+                      ),
+                    );
                   }
                 },
               ),

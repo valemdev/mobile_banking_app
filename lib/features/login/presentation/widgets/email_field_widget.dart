@@ -25,7 +25,7 @@ class EmailField extends StatelessWidget {
           borderSide: BorderSide(color: AppColors.loginTextColor, width: 1.5),
         ),
         focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: Colors.blue, width: 2),
+          borderSide: BorderSide(color: AppColors.primaryColor, width: 2),
         ),
       ),
     );
