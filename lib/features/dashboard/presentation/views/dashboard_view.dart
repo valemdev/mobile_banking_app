@@ -16,9 +16,9 @@ class _DashboardViewState extends State<DashboardView> {
 
   final List<Widget> _pages = const [
     HomePage(),
-    TransferPage(),
-    HistoryPage(),
-    SettingsPage(),
+    TransfersView(),
+    HistoryView(),
+    SettingsView(),
   ];
 
   @override
