@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:mobile_banking_app/features/home/domain/models/account.dart';
-import 'package:mobile_banking_app/features/home/presentation/widgets/account_card.dart';
+import 'package:go_router/go_router.dart';
+import 'package:mobile_banking_app/features/home/domain/models/account_model.dart';
+import 'package:mobile_banking_app/features/home/domain/models/plastic_card_model.dart';
+import 'package:mobile_banking_app/features/home/presentation/widgets/account_carousel.dart';
+import 'package:mobile_banking_app/features/home/presentation/widgets/action_button.dart';
+import 'package:mobile_banking_app/features/home/presentation/widgets/plastic_card.dart';
+
+final PhysicalCard card = PhysicalCard(
+  cardNumber: "4876 5432 1098 7654",
+  cardHolderName: "Jane Smith",
+  expiryDate: "11/23",
+  cvv: "456",
+);
 
 final List<Account> accounts = [
   Account(
@@ -36,26 +46,49 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 24),
           child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: 100),
-          CarouselSlider(
-            options: CarouselOptions(height: 120.0),
-            items: accounts.map((account) {
-              return Builder(
-                builder: (BuildContext context) {
-                  return Container(
-                      width: MediaQuery.of(context).size.width,
-                      margin: const EdgeInsets.symmetric(horizontal: 10.0),
-                      child: AccountCard(account: account));
-                },
-              );
-            }).toList(),
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 24),
+                child: PlasticCard(card: card),
+              ),
+              const SizedBox(height: 24),
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 24),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ActionButton(
+                        icon: Icons.arrow_upward,
+                        label: "Enviar",
+                        onTap: () {
+                          context.go('/transfers');
+                        }),
+                    ActionButton(
+                        icon: Icons.arrow_downward,
+                        label: "Recibir",
+                        onTap: () {
+                          context.go('/history');
+                        }),
+                    ActionButton(
+                        icon: Icons.attach_money,
+                        label: "Movimientos",
+                        onTap: () {
+                          context.go('/dashboard');
+                        })
+                  ],
+                ),
+              ),
+              const SizedBox(height: 24),
+              AccountCarousel(accounts: accounts),
+            ],
           ),
-        ],
-      )),
+        ),
+      ),
     );
   }
 }
