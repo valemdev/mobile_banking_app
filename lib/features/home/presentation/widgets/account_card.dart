@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_banking_app/features/home/domain/models/account.dart';
+import 'package:mobile_banking_app/features/home/domain/models/account_model.dart';
 
 class AccountCard extends StatelessWidget {
   final Account account;
