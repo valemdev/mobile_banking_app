@@ -2,10 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_banking_app/features/home/domain/models/account_model.dart';
 import 'package:mobile_banking_app/features/home/domain/models/plastic_card_model.dart';
+import 'package:mobile_banking_app/features/home/domain/models/user_model.dart';
 import 'package:mobile_banking_app/features/home/presentation/widgets/account_carousel.dart';
 import 'package:mobile_banking_app/features/home/presentation/widgets/action_button.dart';
 import 'package:mobile_banking_app/features/home/presentation/widgets/last_transactions.dart';
 import 'package:mobile_banking_app/features/home/presentation/widgets/plastic_card.dart';
+import 'package:mobile_banking_app/features/home/presentation/widgets/welcome.dart';
+
+final user = User(
+  name: "Jane Smith",
+  imageUrl: "https://media.istockphoto.com/id/1494508936/es/foto/feliz-emocionado-y-llame-por-tel%C3%A9fono-con-una-mujer-negra-en-el-estudio-para-mensajes-de-texto.jpg?s=2048x2048&w=is&k=20&c=OEIskWFgyI7MNN67gh6zr4227gK9A54C90JNyxCN-Kg=",
+);
 
 final PhysicalCard card = PhysicalCard(
   cardNumber: "4876 5432 1098 7654",
@@ -56,7 +63,22 @@ class HomePage extends StatelessWidget {
               children: [
                 Container(
                   margin: const EdgeInsets.symmetric(horizontal: 24),
-                  child: PlasticCard(card: card),
+                  child: Column(children: [
+                    Row(
+                      children: [
+                        Welcome(user: user),
+                        const Spacer(),
+                        IconButton(
+                          icon: const Icon(Icons.logout),
+                          onPressed: () {
+                            context.go('/');
+                          },
+                        )
+                      ],
+                    ),
+                    const SizedBox(height: 24),
+                    PlasticCard(card: card),
+                  ]),
                 ),
                 const SizedBox(height: 24),
                 Container(
