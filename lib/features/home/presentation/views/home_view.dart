@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_banking_app/features/home/domain/models/account_model.dart';
+import 'package:mobile_banking_app/features/home/domain/models/las_transaction_model.dart';
 import 'package:mobile_banking_app/features/home/domain/models/plastic_card_model.dart';
 import 'package:mobile_banking_app/features/home/domain/models/user_model.dart';
 import 'package:mobile_banking_app/features/home/presentation/widgets/account_carousel.dart';
@@ -11,7 +12,8 @@ import 'package:mobile_banking_app/features/home/presentation/widgets/welcome.da
 
 final user = User(
   name: "Jane Smith",
-  imageUrl: "https://media.istockphoto.com/id/1494508936/es/foto/feliz-emocionado-y-llame-por-tel%C3%A9fono-con-una-mujer-negra-en-el-estudio-para-mensajes-de-texto.jpg?s=2048x2048&w=is&k=20&c=OEIskWFgyI7MNN67gh6zr4227gK9A54C90JNyxCN-Kg=",
+  imageUrl:
+      "https://media.istockphoto.com/id/1494508936/es/foto/feliz-emocionado-y-llame-por-tel%C3%A9fono-con-una-mujer-negra-en-el-estudio-para-mensajes-de-texto.jpg?s=2048x2048&w=is&k=20&c=OEIskWFgyI7MNN67gh6zr4227gK9A54C90JNyxCN-Kg=",
 );
 
 final PhysicalCard card = PhysicalCard(
@@ -47,6 +49,23 @@ final List<Account> accounts = [
     balance: 3000.0,
   ),
 ];
+
+final transactionsFromApi = [
+  {
+    "title": "Compra Supermercado",
+    "date": "2026-03-09T10:30:00Z",
+    "amount": -25.50
+  },
+  {"title": "Pago Netflix", "date": "2026-03-09T08:00:00Z", "amount": -12.99},
+  {
+    "title": "Transferencia recibida",
+    "date": "2026-03-09T05:00:00Z",
+    "amount": 150.00
+  }
+];
+
+final lastTransactions =
+    transactionsFromApi.map((json) => TransactionModel.fromJson(json)).toList();
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -126,7 +145,7 @@ class HomePage extends StatelessWidget {
                 const SizedBox(height: 5),
                 Container(
                   margin: const EdgeInsets.symmetric(horizontal: 24),
-                  child: const LastTransactions(),
+                  child: LastTransactions(transactions: lastTransactions),
                 ),
               ],
             ),
