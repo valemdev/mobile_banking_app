@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class TransferPage extends StatelessWidget {
-  const TransferPage({super.key});
+class TransfersView extends StatelessWidget {
+  const TransfersView({super.key});
 
   @override
   Widget build(BuildContext context) {
