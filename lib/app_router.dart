@@ -14,33 +14,53 @@ final GoRouter router = GoRouter(
       path: '/',
       builder: (context, state) => LoginView(),
     ),
-    GoRoute(
-      path: '/home',
-      builder: (context, state) => const HomePage(),
+    StatefulShellRoute.indexedStack(
+      builder: (context, state, navigationShell) =>
+          DashboardView(navigationShell: navigationShell),
+      branches: [
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: '/home',
+              builder: (context, state) => const HomePage(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: '/account_selection',
+              builder: (context, state) => const AccountSelectionView(),
+              routes: [
+                GoRoute(
+                  path: 'add_account',
+                  builder: (context, state) => const AccountAdditionView(),
+                ),
+                GoRoute(
+                  path: 'transfers',
+                  builder: (context, state) => const TransferView(),
+                ),
+              ],
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: '/history',
+              builder: (context, state) => const HistoryView(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: '/settings',
+              builder: (context, state) => const SettingsView(),
+            ),
+          ],
+        ),
+      ],
     ),
-    GoRoute(
-      path: '/dashboard',
-      builder: (context, state) => const DashboardView(),
-    ),
-    GoRoute(
-      path: '/account_selection',
-      builder: (context, state) => const AccountSelectionView(),
-    ),
-    GoRoute(
-      path: '/add_account',
-      builder: (context, state) => const AccountAdditionView(),
-    ),
-    GoRoute(
-      path: '/transfers',
-      builder: (context, state) => const TransferView(),
-    ),
-    GoRoute(
-      path: '/history',
-      builder: (context, state) => const HistoryView(),
-    ),
-    GoRoute(
-      path: '/settings',
-      builder: (context, state) => const SettingsView(),
-    )
   ],
 );

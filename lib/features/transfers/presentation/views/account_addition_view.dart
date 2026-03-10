@@ -124,7 +124,7 @@ class _AccountAdditionViewState extends State<AccountAdditionView> {
                   print(currencyType);
                   print(numeroCuentaController.text);
                   print(isFavorite);
-                  context.push('/transfers');
+                  context.push('/account_selection/transfers');
                 },
                 child: const Text(
                   "Transferir",
