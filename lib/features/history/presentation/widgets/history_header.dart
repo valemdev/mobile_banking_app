@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_banking_app/app_colors.dart';
 
 class HistoryHeader extends StatelessWidget {
   const HistoryHeader({super.key});
@@ -19,7 +20,7 @@ class HistoryHeader extends StatelessWidget {
         Text(
           'Selecciona un producto para ver su resumen y movimientos.',
           style: TextStyle(
-            color: Colors.grey.shade600,
+            color: AppColors.textSecondary,
             fontSize: 14,
           ),
         ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mobile_banking_app/app_colors.dart';
 import 'package:mobile_banking_app/widgets/back_button.dart';
 
 class SettingsView extends StatelessWidget {
@@ -8,7 +9,7 @@ class SettingsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade100,
+      backgroundColor: AppColors.screenSoft,
       body: SafeArea(
         child: Column(
           children: [
@@ -48,7 +49,7 @@ class SettingsView extends StatelessWidget {
                   "General",
                   style: TextStyle(
                     fontSize: 18,
-                    color: Colors.grey.shade600,
+                    color: AppColors.textSecondary,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
@@ -61,9 +62,9 @@ class SettingsView extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: AppColors.surfacePrimary,
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: Colors.grey.shade300),
+                  border: Border.all(color: AppColors.strokeSoft),
                 ),
                 child: Column(
                   children: [
@@ -97,7 +98,7 @@ class SettingsView extends StatelessWidget {
                   "Seguridad",
                   style: TextStyle(
                     fontSize: 18,
-                    color: Colors.grey.shade600,
+                    color: AppColors.textSecondary,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
@@ -110,9 +111,9 @@ class SettingsView extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: AppColors.surfacePrimary,
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: Colors.grey.shade300),
+                  border: Border.all(color: AppColors.strokeSoft),
                 ),
                 child: Column(
                   children: [

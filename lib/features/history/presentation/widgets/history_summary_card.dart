@@ -16,7 +16,7 @@ class HistorySummaryCard extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.surfacePrimary,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
@@ -55,14 +55,15 @@ class _SummaryRow extends StatelessWidget {
         Text(
           item.label,
           style: TextStyle(
-            color: Colors.grey.shade700,
+            color: AppColors.textStrong,
             fontWeight: FontWeight.w500,
           ),
         ),
         Text(
           item.value,
           style: TextStyle(
-            color: item.highlight ? AppColors.primaryColor : Colors.black87,
+            color:
+                item.highlight ? AppColors.primaryColor : AppColors.textPrimary,
             fontWeight: FontWeight.w700,
           ),
         ),

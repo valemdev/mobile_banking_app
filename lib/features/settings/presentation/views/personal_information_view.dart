@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_banking_app/app_colors.dart';
 import 'package:mobile_banking_app/features/settings/domain/models/profile_card_model.dart';
 
 class PersonalInformationView extends StatelessWidget {
@@ -34,7 +35,7 @@ class PersonalInformationView extends StatelessWidget {
             ),
             Text(
               profile.profession,
-              style: const TextStyle(color: Colors.grey),
+              style: const TextStyle(color: AppColors.textMuted),
             ),
             const SizedBox(height: 30),
             _infoTile(
@@ -55,7 +56,7 @@ class PersonalInformationView extends StatelessWidget {
             const SizedBox(height: 20),
             const Text(
               "Birth Date",
-              style: TextStyle(color: Colors.grey),
+              style: TextStyle(color: AppColors.textMuted),
             ),
             const SizedBox(height: 10),
             Row(
@@ -69,7 +70,7 @@ class PersonalInformationView extends StatelessWidget {
             const SizedBox(height: 40),
             Text(
               "Joined ${profile.joinedDate}",
-              style: const TextStyle(color: Colors.grey),
+              style: const TextStyle(color: AppColors.textMuted),
             ),
           ],
         ),
@@ -85,10 +86,10 @@ class PersonalInformationView extends StatelessWidget {
     return Column(
       children: [
         ListTile(
-          leading: Icon(icon, color: Colors.grey),
+          leading: Icon(icon, color: AppColors.textMuted),
           title: Text(
             title,
-            style: const TextStyle(fontSize: 13, color: Colors.grey),
+            style: const TextStyle(fontSize: 13, color: AppColors.textMuted),
           ),
           subtitle: Text(
             value,

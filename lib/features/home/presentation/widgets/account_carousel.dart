@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile_banking_app/app_colors.dart';
 import 'package:mobile_banking_app/features/home/domain/models/account_model.dart';
 import 'package:mobile_banking_app/features/home/presentation/widgets/account_card.dart';
 
@@ -55,8 +56,7 @@ class _AccountCarouselState extends State<AccountCarousel> {
               height: 8,
               margin: const EdgeInsets.symmetric(horizontal: 4),
               decoration: BoxDecoration(
-                color:
-                    isActive ? const Color(0xFF0066FF) : Colors.grey.shade300,
+                color: isActive ? AppColors.primaryColor : AppColors.strokeSoft,
                 borderRadius: BorderRadius.circular(99),
               ),
             );
