@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mobile_banking_app/app_colors.dart';
 import 'package:mobile_banking_app/features/home/domain/models/plastic_card_model.dart';
 
 class PlasticCard extends StatelessWidget {
@@ -21,16 +22,17 @@ class PlasticCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(18),
         gradient: const LinearGradient(
           colors: [
-            Color(0xFF25253D),
-            Color.fromARGB(255, 81, 88, 102),
+            AppColors.cardGradientStart,
+            AppColors.cardGradientEnd,
           ],
           begin: Alignment.topLeft,
           end: Alignment.centerRight,
         ),
-        border: Border.all(color: Colors.white.withOpacity(0.08), width: 1),
+        border: Border.all(
+            color: AppColors.surfacePrimary.withOpacity(0.08), width: 1),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.15),
+            color: AppColors.inkBase.withOpacity(0.15),
             blurRadius: 12,
             offset: const Offset(0, 6),
           )
@@ -52,7 +54,8 @@ class PlasticCard extends StatelessWidget {
               ),
               Transform.rotate(
                 angle: 90 * 3.1416 / 180, // 90 grados
-                child: const Icon(Icons.wifi, color: Colors.white70, size: 28),
+                child: const Icon(Icons.wifi,
+                    color: AppColors.onDarkHigh, size: 28),
               ),
             ],
           ),
@@ -60,7 +63,7 @@ class PlasticCard extends StatelessWidget {
           Text(
             card.cardNumber,
             style: const TextStyle(
-              color: Colors.white,
+              color: AppColors.surfacePrimary,
               fontSize: 22,
               letterSpacing: 1.6,
               fontWeight: FontWeight.w500,
@@ -103,11 +106,11 @@ class PlasticCard extends StatelessWidget {
       children: [
         Text(
           label,
-          style: const TextStyle(color: Colors.white60, fontSize: 10),
+          style: const TextStyle(color: AppColors.onDarkMedium, fontSize: 10),
         ),
         Text(
           value,
-          style: const TextStyle(color: Colors.white, fontSize: 14),
+          style: const TextStyle(color: AppColors.surfacePrimary, fontSize: 14),
         ),
       ],
     );

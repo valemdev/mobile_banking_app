@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_banking_app/app_colors.dart';
 import 'package:mobile_banking_app/features/history/domain/models/history_product_model.dart';
 
 class HistoryProductSelector extends StatelessWidget {
@@ -18,7 +19,7 @@ class HistoryProductSelector extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.surfacePrimary,
         borderRadius: BorderRadius.circular(14),
       ),
       child: DropdownButtonHideUnderline(

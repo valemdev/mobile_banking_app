@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_banking_app/app_colors.dart';
 import 'package:mobile_banking_app/features/history/domain/models/history_product_model.dart';
 
 class HistoryMovementsList extends StatelessWidget {
@@ -16,7 +17,7 @@ class HistoryMovementsList extends StatelessWidget {
         width: double.infinity,
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: AppColors.surfacePrimary,
           borderRadius: BorderRadius.circular(14),
         ),
         child: const Text(
@@ -37,15 +38,17 @@ class HistoryMovementsList extends StatelessWidget {
 
         return Container(
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: AppColors.surfacePrimary,
             borderRadius: BorderRadius.circular(14),
           ),
           child: ListTile(
             leading: CircleAvatar(
-              backgroundColor: isIncome ? Colors.green : Colors.red,
+              backgroundColor: isIncome
+                  ? AppColors.statusPositive
+                  : AppColors.statusNegative,
               child: Icon(
                 isIncome ? Icons.arrow_downward : Icons.arrow_upward,
-                color: Colors.white,
+                color: AppColors.surfacePrimary,
               ),
             ),
             title: Text(
@@ -56,7 +59,9 @@ class HistoryMovementsList extends StatelessWidget {
             trailing: Text(
               '${isIncome ? '+' : '-'}Q ${movement.amount.abs().toStringAsFixed(2)}',
               style: TextStyle(
-                color: isIncome ? Colors.green : Colors.red,
+                color: isIncome
+                    ? AppColors.statusPositive
+                    : AppColors.statusNegative,
                 fontWeight: FontWeight.w700,
               ),
             ),

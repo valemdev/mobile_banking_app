@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_banking_app/app_colors.dart';
 import 'package:mobile_banking_app/features/home/domain/models/account_model.dart';
 
 class AccountCard extends StatelessWidget {
   final Account account;
-
-  static const Color primaryColor = Color(0xFF0066FF);
 
   const AccountCard({
     super.key,
@@ -24,11 +23,11 @@ class AccountCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.surfacePrimary,
         borderRadius: BorderRadius.circular(18),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: AppColors.inkBase.withOpacity(0.05),
             blurRadius: 10,
             offset: const Offset(0, 4),
           )
@@ -39,12 +38,12 @@ class AccountCard extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: primaryColor.withOpacity(0.1),
+              color: AppColors.primaryColor.withOpacity(0.1),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Icon(
               _getIcon(),
-              color: primaryColor,
+              color: AppColors.primaryColor,
               size: 28,
             ),
           ),
@@ -64,7 +63,7 @@ class AccountCard extends StatelessWidget {
                 Text(
                   "****${account.number.substring(account.number.length - 4)}",
                   style: const TextStyle(
-                    color: Colors.grey,
+                    color: AppColors.textMuted,
                   ),
                 ),
                 const SizedBox(height: 4),
@@ -72,7 +71,7 @@ class AccountCard extends StatelessWidget {
                   account.type,
                   style: const TextStyle(
                     fontSize: 13,
-                    color: Colors.grey,
+                    color: AppColors.textMuted,
                   ),
                 ),
               ],
@@ -86,7 +85,7 @@ class AccountCard extends StatelessWidget {
                 style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: primaryColor,
+                  color: AppColors.primaryColor,
                 ),
               ),
               const SizedBox(height: 4),
@@ -94,7 +93,9 @@ class AccountCard extends StatelessWidget {
                 account.status,
                 style: TextStyle(
                   fontSize: 12,
-                  color: account.status == "Active" ? Colors.green : Colors.red,
+                  color: account.status == "Active"
+                      ? AppColors.statusPositive
+                      : AppColors.statusNegative,
                 ),
               ),
             ],

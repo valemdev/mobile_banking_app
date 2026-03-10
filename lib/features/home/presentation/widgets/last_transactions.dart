@@ -71,10 +71,12 @@ class LastTransactions extends StatelessWidget {
 
             return ListTile(
               leading: CircleAvatar(
-                backgroundColor: isIncome ? Colors.green : Colors.red,
+                backgroundColor: isIncome
+                    ? AppColors.statusPositive
+                    : AppColors.statusNegative,
                 child: Icon(
                   isIncome ? Icons.arrow_downward : Icons.arrow_upward,
-                  color: Colors.white,
+                  color: AppColors.surfacePrimary,
                 ),
               ),
               title: Text(tx.title),
@@ -82,7 +84,9 @@ class LastTransactions extends StatelessWidget {
               trailing: Text(
                 "\$${tx.amount.toStringAsFixed(2)}",
                 style: TextStyle(
-                  color: isIncome ? Colors.green : Colors.red,
+                  color: isIncome
+                      ? AppColors.statusPositive
+                      : AppColors.statusNegative,
                   fontWeight: FontWeight.bold,
                 ),
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_banking_app/app_colors.dart';
 
 class ChangePasswordView extends StatelessWidget {
   const ChangePasswordView({super.key});
@@ -14,11 +15,11 @@ class ChangePasswordView extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.lock_outline, size: 80, color: Colors.grey),
+            Icon(Icons.lock_outline, size: 80, color: AppColors.textMuted),
             SizedBox(height: 20),
             Text(
               "Funcionalidad en desarrollo",
-              style: TextStyle(fontSize: 16, color: Colors.grey),
+              style: TextStyle(fontSize: 16, color: AppColors.textMuted),
             ),
           ],
         ),

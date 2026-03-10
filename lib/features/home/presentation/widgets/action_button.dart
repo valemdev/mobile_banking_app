@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_banking_app/app_colors.dart';
 
 class ActionButton extends StatelessWidget {
   final IconData icon;
@@ -17,7 +18,7 @@ class ActionButton extends StatelessWidget {
     return Column(
       children: [
         Material(
-          color: const Color(0xFFEFEFEF),
+          color: AppColors.surfaceMuted,
           shape: const CircleBorder(),
           child: InkWell(
             onTap: onTap,

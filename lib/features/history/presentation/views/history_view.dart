@@ -88,7 +88,7 @@ class _HistoryViewState extends State<HistoryView> {
                   width: double.infinity,
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: AppColors.surfacePrimary,
                     borderRadius: BorderRadius.circular(14),
                   ),
                   child: const Text(

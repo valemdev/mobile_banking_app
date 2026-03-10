@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_banking_app/app_colors.dart';
 
 class ProfileCard extends StatelessWidget {
   final String name;
@@ -38,7 +39,7 @@ class ProfileCard extends StatelessWidget {
                 profession,
                 style: const TextStyle(
                   fontSize: 14,
-                  color: Colors.grey,
+                  color: AppColors.textMuted,
                 ),
               ),
             ],

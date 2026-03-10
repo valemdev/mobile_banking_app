@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_banking_app/app_colors.dart';
 import 'package:mobile_banking_app/features/home/domain/models/user_model.dart';
 
 class Welcome extends StatelessWidget {
@@ -25,7 +26,7 @@ class Welcome extends StatelessWidget {
               "Welcome back,",
               style: TextStyle(
                 fontSize: 14,
-                color: Colors.grey,
+                color: AppColors.textMuted,
               ),
             ),
             Text(
