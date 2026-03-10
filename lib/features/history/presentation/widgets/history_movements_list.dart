@@ -42,11 +42,10 @@ class HistoryMovementsList extends StatelessWidget {
           ),
           child: ListTile(
             leading: CircleAvatar(
-              backgroundColor:
-                  isIncome ? Colors.green.shade50 : Colors.red.shade50,
+              backgroundColor: isIncome ? Colors.green : Colors.red,
               child: Icon(
                 isIncome ? Icons.arrow_downward : Icons.arrow_upward,
-                color: isIncome ? Colors.green : Colors.red,
+                color: Colors.white,
               ),
             ),
             title: Text(
