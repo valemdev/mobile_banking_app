@@ -109,19 +109,19 @@ class HomePage extends StatelessWidget {
                           icon: Icons.arrow_upward,
                           label: "Enviar",
                           onTap: () {
-                            context.push('/account_selection');
+                            StatefulNavigationShell.of(context).goBranch(1);
                           }),
                       ActionButton(
                           icon: Icons.arrow_downward,
                           label: "Recibir",
                           onTap: () {
-                            context.push('/history');
+                            StatefulNavigationShell.of(context).goBranch(2);
                           }),
                       ActionButton(
                           icon: Icons.attach_money,
                           label: "Movimientos",
                           onTap: () {
-                            context.push('/dashboard');
+                            StatefulNavigationShell.of(context).goBranch(2);
                           })
                     ],
                   ),

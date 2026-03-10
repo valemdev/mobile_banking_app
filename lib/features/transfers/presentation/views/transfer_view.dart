@@ -29,7 +29,7 @@ class _TransferViewState extends State<TransferView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const BackButtonWidget(route: '/dashboard'),
+        leading: const BackButtonWidget(route: '/account_selection'),
         title: const Text("Transferir dinero"),
         centerTitle: true,
       ),

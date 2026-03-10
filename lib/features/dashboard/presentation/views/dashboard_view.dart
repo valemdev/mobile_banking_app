@@ -1,36 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_banking_app/features/configuration/presentation/views/configuration_view.dart';
-import 'package:mobile_banking_app/features/history/presentation/views/history_view.dart';
-import 'package:mobile_banking_app/features/home/presentation/views/home_view.dart';
-import 'package:mobile_banking_app/features/transfers/presentation/views/account_selection_view.dart';
+import 'package:go_router/go_router.dart';
 
-class DashboardView extends StatefulWidget {
-  const DashboardView({super.key});
+class DashboardView extends StatelessWidget {
+  final StatefulNavigationShell navigationShell;
 
-  @override
-  State<DashboardView> createState() => _DashboardViewState();
-}
-
-class _DashboardViewState extends State<DashboardView> {
-  int _selectedIndex = 0;
-
-  final List<Widget> _pages = const [
-    HomePage(),
-    AccountSelectionView(),
-    HistoryView(),
-    SettingsView(),
-  ];
+  const DashboardView({super.key, required this.navigationShell});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _pages[_selectedIndex],
+      body: navigationShell,
       bottomNavigationBar: NavigationBar(
-        selectedIndex: _selectedIndex,
+        selectedIndex: navigationShell.currentIndex,
         onDestinationSelected: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
+          navigationShell.goBranch(
+            index,
+            initialLocation: index == navigationShell.currentIndex,
+          );
         },
         destinations: const [
           NavigationDestination(

@@ -44,7 +44,7 @@ class _AccountSelectionViewState extends State<AccountSelectionView> {
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {
-                  context.push('/add_account');
+                  context.push('/account_selection/add_account');
                 },
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size(double.infinity, 50),
