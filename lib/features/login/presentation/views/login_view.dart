@@ -67,7 +67,8 @@ class LoginView extends StatelessWidget {
 
                     print('Email: $email, Password: $password');
 
-                    context.go('/dashboard'); // <-- Así se navega con go_router
+                    context
+                        .push('/dashboard'); // <-- Así se navega con go_router
                   }
                 },
               ),

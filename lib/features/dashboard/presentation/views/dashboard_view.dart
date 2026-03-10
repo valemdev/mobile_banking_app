@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile_banking_app/features/configuration/presentation/views/configuration_view.dart';
 import 'package:mobile_banking_app/features/history/presentation/views/history_view.dart';
 import 'package:mobile_banking_app/features/home/presentation/views/home_view.dart';
-import 'package:mobile_banking_app/features/transfers/presentation/views/transfers_view.dart';
+import 'package:mobile_banking_app/features/transfers/presentation/views/account_selection_view.dart';
 
 class DashboardView extends StatefulWidget {
   const DashboardView({super.key});
@@ -16,7 +16,7 @@ class _DashboardViewState extends State<DashboardView> {
 
   final List<Widget> _pages = const [
     HomePage(),
-    TransfersView(),
+    AccountSelectionView(),
     HistoryView(),
     SettingsView(),
   ];
