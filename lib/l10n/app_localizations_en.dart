@@ -31,16 +31,4 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get password => 'Password';
-
-  @override
-  String get balance => 'Available balance';
-
-  @override
-  String get transfer => 'Transfer';
-
-  @override
-  String get insufficient_funds => 'Insufficient funds';
-
-  @override
-  String get generic_error => 'An error occurred. Please try again.';
 }
