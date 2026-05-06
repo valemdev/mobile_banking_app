@@ -6,9 +6,5 @@
     "new_user": "Nuevo usuario",
     "email": "Correo",
     "email_address": "Correo electronico",
-    "password": "Contraseña",
-    "balance": "Saldo disponible",
-    "transfer": "Transferir",
-    "insufficient_funds": "Fondos insuficientes",
-    "generic_error": "Ocurrió un error. Inténtalo de nuevo."
+    "password": "Contraseña"
 }

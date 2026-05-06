@@ -6,9 +6,5 @@
     "new_user": "New user",
     "email": "Email",
     "email_address": "Email Adress",
-    "password": "Password",
-    "balance": "Available balance",
-    "transfer": "Transfer",
-    "insufficient_funds": "Insufficient funds",
-    "generic_error": "An error occurred. Please try again."
+    "password": "Password"
 }
