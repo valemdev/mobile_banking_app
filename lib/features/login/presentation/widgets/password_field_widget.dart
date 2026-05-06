@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_banking_app/app_colors.dart';
+import 'package:mobile_banking_app/l10n/app_localizations.dart';
 
 class PasswordField extends StatefulWidget {
   final TextEditingController controller;
@@ -28,7 +29,7 @@ class _PasswordFieldState extends State<PasswordField> {
               size: 22, color: AppColors.loginTextColor),
         ),
         prefixIconConstraints: const BoxConstraints(minWidth: 0, minHeight: 0),
-        hintText: 'Password',
+        hintText: AppLocalizations.of(context)!.password,
         suffixIcon: IconButton(
           icon: Icon(_obscurePassword ? Icons.visibility_off : Icons.visibility,
               color: AppColors.loginTextColor),

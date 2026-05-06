@@ -1,0 +1,10 @@
+{
+    "app_title": "My Banking App",
+    "forgot_password": "Forgot password?",
+    "signIn": "Sign in",
+    "signUp": "Sign up",
+    "new_user": "New user",
+    "email": "Email",
+    "email_address": "Email Adress",
+    "password": "Password"
+}
