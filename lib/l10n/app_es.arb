@@ -1,0 +1,14 @@
+{
+    "app_title": "Mi Aplicación Bancaria",
+    "forgot_password": "¿Olvidaste tu contraseña?",
+    "signIn": "Iniciar sesión",
+    "signUp": "Crear cuenta",
+    "new_user": "Nuevo usuario",
+    "email": "Correo",
+    "email_address": "Correo electronico",
+    "password": "Contraseña",
+    "balance": "Saldo disponible",
+    "transfer": "Transferir",
+    "insufficient_funds": "Fondos insuficientes",
+    "generic_error": "Ocurrió un error. Inténtalo de nuevo."
+}

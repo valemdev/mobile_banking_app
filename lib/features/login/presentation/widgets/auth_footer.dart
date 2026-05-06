@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_banking_app/app_colors.dart';
+import 'package:mobile_banking_app/l10n/app_localizations.dart';
 
 class AuthFooter extends StatelessWidget {
   const AuthFooter({super.key});
@@ -10,9 +11,9 @@ class AuthFooter extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Text(
-            "I'm a new user. ",
-            style: TextStyle(
+          Text(
+            '${AppLocalizations.of(context)!.new_user}. ',
+            style: const TextStyle(
               fontSize: 14,
               color: AppColors.loginTextColor,
             ),
@@ -23,9 +24,9 @@ class AuthFooter extends StatelessWidget {
                 const SnackBar(content: Text('Ir a registro')),
               );
             },
-            child: const Text(
-              'Sign Up',
-              style: TextStyle(
+            child: Text(
+              AppLocalizations.of(context)!.signUp,
+              style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
                 color: AppColors.primaryColor,

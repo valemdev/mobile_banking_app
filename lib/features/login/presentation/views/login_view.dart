@@ -4,6 +4,7 @@ import 'package:mobile_banking_app/features/login/presentation/widgets/auth_foot
 import 'package:mobile_banking_app/features/login/presentation/widgets/email_field_widget.dart';
 import 'package:mobile_banking_app/features/login/presentation/widgets/password_field_widget.dart';
 import 'package:mobile_banking_app/features/login/presentation/widgets/primary_button.dart';
+import 'package:mobile_banking_app/l10n/app_localizations.dart';
 
 class LoginView extends StatelessWidget {
   LoginView({super.key});
@@ -23,12 +24,12 @@ class LoginView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 200),
-              const Text(
-                'Sign In',
+              Text(
+                AppLocalizations.of(context)!.signIn,
                 style: TextStyle(fontSize: 32, fontWeight: FontWeight.w500),
               ),
               const SizedBox(height: 30),
-              const Text('Email Address'),
+              Text(AppLocalizations.of(context)!.email_address),
               const SizedBox(height: 5),
               EmailField(
                 controller: emailController,
@@ -43,7 +44,7 @@ class LoginView extends StatelessWidget {
                 },
               ),
               const SizedBox(height: 20),
-              const Text('Password'),
+              Text(AppLocalizations.of(context)!.password),
               const SizedBox(height: 5),
               PasswordField(
                 controller: passwordController,
@@ -59,7 +60,7 @@ class LoginView extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               PrimaryButton(
-                text: 'Sign In',
+                text: AppLocalizations.of(context)!.signIn,
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
                     String email = emailController.text;
