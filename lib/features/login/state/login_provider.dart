@@ -8,6 +8,7 @@ class LoginProvider extends ChangeNotifier {
       : _loginUseCase = loginUseCase ?? LoginUseCase();
 
   String title = "Login";
+  bool loggedIn = false;
   int loginAttempts = 0;
 
   void updateTitle(String newTitle) {
@@ -23,10 +24,12 @@ class LoginProvider extends ChangeNotifier {
     try {
       final user = await _loginUseCase.call(username, password);
       title = " Welcome, ${user.name}!";
+      loggedIn = true;
       notifyListeners();
       return true;
     } catch (e) {
       title = "Login Failed: ${e.toString()}";
+      loggedIn = false;
       notifyListeners();
       return false;
     }
