@@ -4,8 +4,13 @@ import 'package:mobile_banking_app/features/login/domain/repositories/authentica
 
 class LoginUseCase {
   final AuthenticationRepository _authRepository;
+
   LoginUseCase({AuthenticationRepository? authRepository})
-      : _authRepository = authRepository ?? AuthenticationRepositoryImpl();
+      : _authRepository = authRepository ??
+            AuthenticationRepositoryImpl(
+              localDataSource:
+                  throw Exception('LocalDataSource must be provided'),
+            );
 
   Future<User> call(String email, String password) async {
     return await _authRepository.login(email, password);
@@ -13,5 +18,13 @@ class LoginUseCase {
 
   Future<void> logout() async {
     return await _authRepository.logout();
+  }
+
+  Future<User?> getStoredUser() async {
+    if (_authRepository is AuthenticationRepositoryImpl) {
+      return await (_authRepository as AuthenticationRepositoryImpl)
+          .getStoredUser();
+    }
+    return null;
   }
 }

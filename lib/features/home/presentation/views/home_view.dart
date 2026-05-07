@@ -10,7 +10,7 @@ import 'package:mobile_banking_app/features/home/presentation/widgets/action_but
 import 'package:mobile_banking_app/features/home/presentation/widgets/last_transactions.dart';
 import 'package:mobile_banking_app/features/home/presentation/widgets/plastic_card.dart';
 import 'package:mobile_banking_app/features/home/presentation/widgets/welcome.dart';
-import 'package:mobile_banking_app/features/login/state/login_notifier.dart';
+import 'package:mobile_banking_app/features/login/state/login_notifier_provider.dart';
 
 final user = User(
   name: "Jane Smith",
@@ -93,7 +93,7 @@ class HomePage extends ConsumerWidget {
                           icon: const Icon(Icons.logout),
                           onPressed: () async {
                             final loginNotifier =
-                                ref.read(loginProvider.notifier);
+                                ref.read(loginNotifierProvider.notifier);
                             await loginNotifier.logout();
                             if (context.mounted) {
                               context.go('/');
