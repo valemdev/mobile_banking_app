@@ -1,28 +1,29 @@
-abstract base class LoginState {
-  final String title;
-  final bool logged;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  LoginState({required this.title, required this.logged});
-}
+part 'login_state.freezed.dart';
 
-final class LoginInitialState extends LoginState {
-  LoginInitialState() : super(title: 'Login', logged: false);
-}
+@freezed
+class LoginState with _$LoginState {
+  const factory LoginState.initial() = LoginInitialState;
+  const factory LoginState.loading() = LoginLoadingState;
+  const factory LoginState.success({required String userName}) =
+      LoginSuccessState;
+  const factory LoginState.error({required String errorMessage}) =
+      LoginErrorState;
 
-final class LoginLoadingState extends LoginState {
-  LoginLoadingState() : super(title: 'Haciendo login...', logged: false);
-}
+  const LoginState._();
 
-final class LoginSuccessState extends LoginState {
-  final String userName;
+  String get title => when(
+        initial: () => 'Login',
+        loading: () => 'Haciendo login...',
+        success: (userName) => 'Bienvenido $userName',
+        error: (errorMessage) => errorMessage,
+      );
 
-  LoginSuccessState(this.userName)
-      : super(title: 'Bienvenido $userName', logged: true);
-}
-
-final class LoginErrorState extends LoginState {
-  final String errorMessage;
-
-  LoginErrorState(this.errorMessage)
-      : super(title: errorMessage, logged: false);
+  bool get logged => when(
+        initial: () => false,
+        loading: () => false,
+        success: (_) => true,
+        error: (_) => false,
+      );
 }

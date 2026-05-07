@@ -11,16 +11,16 @@ class LoginNotifier extends StateNotifier<LoginState> {
 
   LoginNotifier({LoginUseCase? loginUseCase})
       : _loginUseCase = loginUseCase ?? LoginUseCase(),
-        super(LoginInitialState());
+        super(const LoginState.initial());
 
   Future<bool> login(String username, String password) async {
-    state = LoginLoadingState();
+    state = const LoginState.loading();
     try {
       final user = await _loginUseCase.call(username, password);
-      state = LoginSuccessState(user.name);
+      state = LoginState.success(userName: user.name);
       return true;
     } catch (e) {
-      state = LoginErrorState("Login Failed: ${e.toString()}");
+      state = LoginState.error(errorMessage: "Login Failed: ${e.toString()}");
       return false;
     }
   }
@@ -28,10 +28,10 @@ class LoginNotifier extends StateNotifier<LoginState> {
   Future<void> logout() async {
     try {
       await _loginUseCase.logout();
-      state = LoginInitialState();
+      state = const LoginState.initial();
     } catch (e) {
       // Even if logout fails, reset the state
-      state = LoginInitialState();
+      state = const LoginState.initial();
     }
   }
 }
