@@ -1,7 +1,7 @@
 import 'package:mobile_banking_app/features/login/data/models/user_model.dart';
 
 class User {
-  final String id;
+  final int id;
   final String name;
   final String email;
 
