@@ -4,7 +4,9 @@ import 'package:mobile_banking_app/features/login/presentation/widgets/auth_foot
 import 'package:mobile_banking_app/features/login/presentation/widgets/email_field_widget.dart';
 import 'package:mobile_banking_app/features/login/presentation/widgets/password_field_widget.dart';
 import 'package:mobile_banking_app/features/login/presentation/widgets/primary_button.dart';
+import 'package:mobile_banking_app/features/login/state/login_provider.dart';
 import 'package:mobile_banking_app/l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 class LoginView extends StatelessWidget {
   LoginView({super.key});
@@ -15,6 +17,7 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final title = context.watch<LoginProvider>().title;
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -25,7 +28,7 @@ class LoginView extends StatelessWidget {
             children: [
               const SizedBox(height: 200),
               Text(
-                AppLocalizations.of(context)!.signIn,
+                title, //AppLocalizations.of(context)!.signIn,
                 style: TextStyle(fontSize: 32, fontWeight: FontWeight.w500),
               ),
               const SizedBox(height: 30),
@@ -62,14 +65,17 @@ class LoginView extends StatelessWidget {
               PrimaryButton(
                 text: AppLocalizations.of(context)!.signIn,
                 onPressed: () {
-                  if (formKey.currentState!.validate()) {
+                  context
+                      .read<LoginProvider>()
+                      .login(emailController.text, passwordController.text);
+                  /* if (formKey.currentState!.validate()) {
                     String email = emailController.text;
                     String password = passwordController.text;
 
                     print('Email: $email, Password: $password');
 
                     context.go('/home');
-                  }
+                  } */
                 },
               ),
               const SizedBox(height: 18),

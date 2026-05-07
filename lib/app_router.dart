@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:mobile_banking_app/features/login/state/login_provider.dart';
 import 'package:mobile_banking_app/features/settings/domain/models/profile_card_model.dart';
 import 'package:mobile_banking_app/features/settings/presentation/views/change_password_view.dart';
 import 'package:mobile_banking_app/features/settings/presentation/views/contact_us_view.dart';
@@ -12,6 +13,7 @@ import 'package:mobile_banking_app/features/login/presentation/views/login_view.
 import 'package:mobile_banking_app/features/transfers/presentation/views/account_addition_view.dart';
 import 'package:mobile_banking_app/features/transfers/presentation/views/account_selection_view.dart';
 import 'package:mobile_banking_app/features/transfers/presentation/views/transfer_view.dart';
+import 'package:provider/provider.dart';
 
 const profileCard = ProfileCard(
   name: "Jane Smith",
@@ -30,7 +32,10 @@ final GoRouter router = GoRouter(
   routes: [
     GoRoute(
       path: '/',
-      builder: (context, state) => LoginView(),
+      builder: (context, state) => ChangeNotifierProvider(
+        create: (_) => LoginProvider(null),
+        child: LoginView(),
+      ),
     ),
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) =>
