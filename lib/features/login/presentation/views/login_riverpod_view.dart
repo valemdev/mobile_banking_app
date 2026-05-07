@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mobile_banking_app/features/login/presentation/widgets/auth_footer.dart';
 import 'package:mobile_banking_app/features/login/presentation/widgets/email_field_widget.dart';
 import 'package:mobile_banking_app/features/login/presentation/widgets/password_field_widget.dart';
@@ -17,8 +18,15 @@ class LoginRiverpodView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final title = ref.watch(loginProvider).title;
+    final loginState = ref.watch(loginProvider).logged;
     final loginNotifier = ref.read(loginProvider.notifier);
 
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (loginState) {
+        // Navegar a otra pantalla
+        context.go('/home');
+      }
+    });
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -54,7 +62,7 @@ class LoginRiverpodView extends ConsumerWidget {
               const SizedBox(height: 20),
               PrimaryButton(
                 text: AppLocalizations.of(context)!.signIn,
-                onPressed: () {
+                onPressed: () async {
                   loginNotifier.login(
                       emailController.text, passwordController.text);
                 },
