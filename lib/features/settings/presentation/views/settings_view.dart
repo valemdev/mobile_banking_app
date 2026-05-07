@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_banking_app/app_colors.dart';
+import 'package:mobile_banking_app/features/login/state/login_notifier.dart';
 import 'package:mobile_banking_app/widgets/back_button.dart';
 
-class SettingsView extends StatelessWidget {
+class SettingsView extends ConsumerWidget {
   const SettingsView({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       backgroundColor: AppColors.screenSoft,
       body: SafeArea(
@@ -23,8 +25,12 @@ class SettingsView extends StatelessWidget {
                     const BackButtonWidget(route: '/home'),
                     IconButton(
                       icon: const Icon(Icons.logout),
-                      onPressed: () {
-                        context.go('/');
+                      onPressed: () async {
+                        final loginNotifier = ref.read(loginProvider.notifier);
+                        await loginNotifier.logout();
+                        if (context.mounted) {
+                          context.go('/');
+                        }
                       },
                     ),
                   ],

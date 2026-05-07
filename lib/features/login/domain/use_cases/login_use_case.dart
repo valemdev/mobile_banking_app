@@ -10,4 +10,8 @@ class LoginUseCase {
   Future<User> call(String email, String password) async {
     return await _authRepository.login(email, password);
   }
+
+  Future<void> logout() async {
+    return await _authRepository.logout();
+  }
 }

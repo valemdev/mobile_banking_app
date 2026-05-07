@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_banking_app/features/home/domain/models/account_model.dart';
 import 'package:mobile_banking_app/features/home/domain/models/las_transaction_model.dart';
@@ -9,6 +10,7 @@ import 'package:mobile_banking_app/features/home/presentation/widgets/action_but
 import 'package:mobile_banking_app/features/home/presentation/widgets/last_transactions.dart';
 import 'package:mobile_banking_app/features/home/presentation/widgets/plastic_card.dart';
 import 'package:mobile_banking_app/features/home/presentation/widgets/welcome.dart';
+import 'package:mobile_banking_app/features/login/state/login_notifier.dart';
 
 final user = User(
   name: "Jane Smith",
@@ -67,11 +69,11 @@ final transactionsFromApi = [
 final lastTransactions =
     transactionsFromApi.map((json) => TransactionModel.fromJson(json)).toList();
 
-class HomePage extends StatelessWidget {
+class HomePage extends ConsumerWidget {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -89,8 +91,13 @@ class HomePage extends StatelessWidget {
                         const Spacer(),
                         IconButton(
                           icon: const Icon(Icons.logout),
-                          onPressed: () {
-                            context.go('/');
+                          onPressed: () async {
+                            final loginNotifier =
+                                ref.read(loginProvider.notifier);
+                            await loginNotifier.logout();
+                            if (context.mounted) {
+                              context.go('/');
+                            }
                           },
                         )
                       ],

@@ -24,4 +24,14 @@ class LoginNotifier extends StateNotifier<LoginState> {
       return false;
     }
   }
+
+  Future<void> logout() async {
+    try {
+      await _loginUseCase.logout();
+      state = LoginInitialState();
+    } catch (e) {
+      // Even if logout fails, reset the state
+      state = LoginInitialState();
+    }
+  }
 }
