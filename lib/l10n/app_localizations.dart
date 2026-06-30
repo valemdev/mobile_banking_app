@@ -145,30 +145,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Password'**
   String get password;
-
-  /// No description provided for @balance.
-  ///
-  /// In en, this message translates to:
-  /// **'Available balance'**
-  String get balance;
-
-  /// No description provided for @transfer.
-  ///
-  /// In en, this message translates to:
-  /// **'Transfer'**
-  String get transfer;
-
-  /// No description provided for @insufficient_funds.
-  ///
-  /// In en, this message translates to:
-  /// **'Insufficient funds'**
-  String get insufficient_funds;
-
-  /// No description provided for @generic_error.
-  ///
-  /// In en, this message translates to:
-  /// **'An error occurred. Please try again.'**
-  String get generic_error;
 }
 
 class _AppLocalizationsDelegate
