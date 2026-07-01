@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile_banking_app/app_router.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:mobile_banking_app/core/local_storage.dart';
 import 'l10n/app_localizations.dart';
 
-void main() {
-  runApp(const MainApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await LocalStorage().init();
+  runApp(const ProviderScope(child: MainApp()));
 }
 
 class MainApp extends StatelessWidget {
