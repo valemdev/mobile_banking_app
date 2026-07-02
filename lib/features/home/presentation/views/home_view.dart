@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mobile_banking_app/features/home/domain/models/account_model.dart';
-import 'package:mobile_banking_app/features/home/domain/models/las_transaction_model.dart';
-import 'package:mobile_banking_app/features/home/domain/models/plastic_card_model.dart';
-import 'package:mobile_banking_app/features/home/domain/models/user_model.dart';
+import 'package:mobile_banking_app/features/home/data/data_sources/models/account_model.dart';
+import 'package:mobile_banking_app/features/home/data/data_sources/models/las_transaction_model.dart';
+import 'package:mobile_banking_app/features/home/data/data_sources/models/plastic_card_model.dart';
+import 'package:mobile_banking_app/features/home/domain/entities/user_entity.dart';
+import 'package:mobile_banking_app/features/home/presentation/states/welcome_notifier.dart';
+import 'package:mobile_banking_app/features/home/presentation/states/welcome_state.dart';
 import 'package:mobile_banking_app/features/home/presentation/widgets/account_carousel.dart';
 import 'package:mobile_banking_app/features/home/presentation/widgets/action_button.dart';
 import 'package:mobile_banking_app/features/home/presentation/widgets/last_transactions.dart';
@@ -11,7 +14,7 @@ import 'package:mobile_banking_app/features/home/presentation/widgets/plastic_ca
 import 'package:mobile_banking_app/features/home/presentation/widgets/welcome.dart';
 import 'package:mobile_banking_app/l10n/app_localizations.dart';
 
-final user = User(
+final UserEntity user = UserEntity(
   name: "Jane Smith",
   imageUrl:
       "https://media.istockphoto.com/id/1494508936/es/foto/feliz-emocionado-y-llame-por-tel%C3%A9fono-con-una-mujer-negra-en-el-estudio-para-mensajes-de-texto.jpg?s=2048x2048&w=is&k=20&c=OEIskWFgyI7MNN67gh6zr4227gK9A54C90JNyxCN-Kg=",
@@ -73,6 +76,16 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return const _HomePage();
+  }
+}
+
+class _HomePage extends ConsumerWidget {
+  const _HomePage();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final welcomeState = ref.watch(welcomeNotifierProvider);
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -86,11 +99,22 @@ class HomePage extends StatelessWidget {
                   child: Column(children: [
                     Row(
                       children: [
-                        Welcome(user: user),
+                        if (welcomeState is WelcomeLoadingState)
+                          const SizedBox(
+                            height: 20,
+                            child: CircularProgressIndicator(),
+                          )
+                        else if (welcomeState is WelcomeLoadedState)
+                          Welcome(user: welcomeState.user)
+                        else
+                          Welcome(
+                              user: UserEntity(
+                                  name: 'Error', imageUrl: user.imageUrl)),
                         const Spacer(),
                         IconButton(
                           icon: const Icon(Icons.logout),
                           onPressed: () {
+                            ref.read(welcomeNotifierProvider.notifier).logout();
                             context.go('/');
                           },
                         )

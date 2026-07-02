@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_banking_app/app_colors.dart';
-import 'package:mobile_banking_app/features/home/domain/models/las_transaction_model.dart';
+import 'package:mobile_banking_app/features/home/data/data_sources/models/las_transaction_model.dart';
 import 'package:mobile_banking_app/l10n/app_localizations.dart';
 
 class LastTransactions extends StatelessWidget {
