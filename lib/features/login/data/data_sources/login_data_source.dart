@@ -1,12 +1,26 @@
+import 'package:mobile_banking_app/core/network/api_client.dart';
+import 'package:mobile_banking_app/features/login/data/models/user_access_info_model.dart';
+
 class LoginDataSource {
-  Future<String> login(email, password) async {
-    await Future.delayed(const Duration(seconds: 6));
-    if(email == 'pablovas@gmail.com' && password == '123456'){
-    const mockToken =
-        'eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiIsImtpZCI6ImExYTk2YzNmMjdlODI0MjZmYjRjMjRjZDg4NDE4YzBlIn0.eyJzdWIiOiJwYWJsb3ZhcyJ9.4Rr-R1NxkSBiMn98PomoiGp3TqrokUSzgaKTApCFu-g9jLrtWC5CsTb9_BUV4EsoVygJYSWOQ9bRBnC7BtHj_A';
-        return mockToken;
-    } else {
-      throw Exception('Invalid credentials');
+  final apiClient = ApiClient(
+    baseUrl: 'https://dummyjson.com',
+    enableLogs: true,
+  );
+
+  Future<UserAccessInfo> login(email, password) async {
+    final response = await apiClient.post(
+      '/auth/login',
+      data: {
+        'username': email,
+        'password': password,
+        'expiresInMins': 60,
+      },
+    );
+
+    if (response.statusCode == 200) {
+      final userAccessInfo = UserAccessInfo.fromJson(response.data);
+      return userAccessInfo;
     }
+    throw Exception('Failed to login');
   }
 }
