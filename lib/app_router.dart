@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:mobile_banking_app/main.dart';
 import 'package:mobile_banking_app/features/settings/domain/models/profile_card_model.dart';
 import 'package:mobile_banking_app/features/settings/presentation/views/change_password_view.dart';
 import 'package:mobile_banking_app/features/settings/presentation/views/contact_us_view.dart';
@@ -27,6 +28,7 @@ const profileCard = ProfileCard(
 );
 
 final GoRouter router = GoRouter(
+  initialLocation: hasValidSession ? '/home' : '/',
   routes: [
     GoRoute(
       path: '/',
