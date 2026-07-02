@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_banking_app/app_colors.dart';
 import 'package:mobile_banking_app/features/home/domain/models/las_transaction_model.dart';
+import 'package:mobile_banking_app/l10n/app_localizations.dart';
 
 class LastTransactions extends StatelessWidget {
   final List<TransactionModel> transactions;
@@ -30,25 +31,23 @@ class LastTransactions extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text(
-              "Transacciones",
-              style: TextStyle(
+            Text(
+              AppLocalizations.of(context)!.transactions,
+              style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
             Material(
               child: InkWell(
-                onTap: () {
-                  print("Ver todo");
-                },
-                child: const SizedBox(
-                  width: 56,
-                  height: 30,
+                onTap: () {},
+                child: SizedBox(
+                  width: 70,
+                  height: 40,
                   child: Center(
                     child: Text(
-                      'Ver todo',
-                      style: TextStyle(
+                      AppLocalizations.of(context)!.seeAll,
+                      style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                         color: AppColors.primaryColor,

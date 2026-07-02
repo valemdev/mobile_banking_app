@@ -1,7 +1,9 @@
 import 'package:go_router/go_router.dart';
+import 'package:mobile_banking_app/main.dart';
 import 'package:mobile_banking_app/features/settings/domain/models/profile_card_model.dart';
 import 'package:mobile_banking_app/features/settings/presentation/views/change_password_view.dart';
 import 'package:mobile_banking_app/features/settings/presentation/views/contact_us_view.dart';
+import 'package:mobile_banking_app/features/settings/presentation/views/language_view.dart';
 import 'package:mobile_banking_app/features/settings/presentation/views/personal_information_view.dart';
 import 'package:mobile_banking_app/features/settings/presentation/views/profile_view.dart';
 import 'package:mobile_banking_app/features/settings/presentation/views/settings_view.dart';
@@ -27,10 +29,11 @@ const profileCard = ProfileCard(
 );
 
 final GoRouter router = GoRouter(
+  initialLocation: hasValidSession ? '/home' : '/',
   routes: [
     GoRoute(
       path: '/',
-      builder: (context, state) => LoginView(),
+      builder: (context, state) => const LoginView(),
     ),
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) =>
@@ -94,6 +97,10 @@ final GoRouter router = GoRouter(
                 GoRoute(
                   path: 'change_password',
                   builder: (context, state) => const ChangePasswordView(),
+                ),
+                GoRoute(
+                  path: 'change_language',
+                  builder: (context, state) => const LanguageView(),
                 ),
               ],
             ),

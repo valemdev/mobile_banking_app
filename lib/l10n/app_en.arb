@@ -6,5 +6,16 @@
     "new_user": "New user",
     "email": "Email",
     "email_address": "Email Adress",
-    "password": "Password"
+    "password": "Password",
+    "send": "Send",
+    "receive": "Receive",
+    "movements": "Movements",
+    "accounts": "Accounts",
+    "welcome": "Welcome back,",
+    "transactions": "Transactions",
+    "seeAll": "See all",
+    "navHome": "Home",
+    "navTransfer": "Transfer",
+    "navHistory": "History",
+    "navSettings": "Settings"
 }

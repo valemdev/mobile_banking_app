@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mobile_banking_app/features/login/presentation/state/login_notifier.dart';
+import 'package:mobile_banking_app/features/login/presentation/state/login_state.dart';
 import 'package:mobile_banking_app/features/login/presentation/widgets/auth_footer.dart';
 import 'package:mobile_banking_app/features/login/presentation/widgets/email_field_widget.dart';
 import 'package:mobile_banking_app/features/login/presentation/widgets/password_field_widget.dart';
@@ -7,14 +10,21 @@ import 'package:mobile_banking_app/features/login/presentation/widgets/primary_b
 import 'package:mobile_banking_app/l10n/app_localizations.dart';
 
 class LoginView extends StatelessWidget {
-  LoginView({super.key});
+  const LoginView({super.key});
 
+  @override
+  Widget build(BuildContext context) {
+    return _LoginView();
+  }
+}
+
+class _LoginView extends ConsumerWidget {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -26,7 +36,8 @@ class LoginView extends StatelessWidget {
               const SizedBox(height: 200),
               Text(
                 AppLocalizations.of(context)!.signIn,
-                style: TextStyle(fontSize: 32, fontWeight: FontWeight.w500),
+                style:
+                    const TextStyle(fontSize: 32, fontWeight: FontWeight.w500),
               ),
               const SizedBox(height: 30),
               Text(AppLocalizations.of(context)!.email_address),
@@ -61,14 +72,25 @@ class LoginView extends StatelessWidget {
               const SizedBox(height: 20),
               PrimaryButton(
                 text: AppLocalizations.of(context)!.signIn,
-                onPressed: () {
+                onPressed: () async {
                   if (formKey.currentState!.validate()) {
                     String email = emailController.text;
                     String password = passwordController.text;
 
-                    print('Email: $email, Password: $password');
-
-                    context.go('/home');
+                    await ref
+                        .read(loginNotifierProvider.notifier)
+                        .login(email, password);
+                    if (!context.mounted) return;
+                    final loginState = ref.read(loginNotifierProvider);
+                    if (loginState is LoginSuccessState) {
+                      context.go('/home');
+                    } else if (loginState is LoginErrorState) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                            content: Text(
+                                'Error de inicio de sesión: ${loginState.errorMessage}')),
+                      );
+                    }
                   }
                 },
               ),

@@ -31,4 +31,37 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get password => 'Contraseña';
+
+  @override
+  String get send => 'Enviar';
+
+  @override
+  String get receive => 'Recibir';
+
+  @override
+  String get movements => 'Movimientos';
+
+  @override
+  String get accounts => 'Cuentas';
+
+  @override
+  String get welcome => 'Bienvenido de nuevo,';
+
+  @override
+  String get transactions => 'Transacciones';
+
+  @override
+  String get seeAll => 'Ver todo';
+
+  @override
+  String get navHome => 'Inicio';
+
+  @override
+  String get navTransfer => 'Transferir';
+
+  @override
+  String get navHistory => 'Historial';
+
+  @override
+  String get navSettings => 'Configuración';
 }

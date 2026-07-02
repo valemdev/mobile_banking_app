@@ -6,5 +6,16 @@
     "new_user": "Nuevo usuario",
     "email": "Correo",
     "email_address": "Correo electronico",
-    "password": "Contraseña"
+    "password": "Contraseña",
+    "send": "Enviar",
+    "receive": "Recibir",
+    "movements": "Movimientos",
+    "accounts": "Cuentas",
+    "welcome": "Bienvenido de nuevo,",
+    "transactions": "Transacciones",
+    "seeAll": "Ver todo",
+    "navHome": "Inicio",
+    "navTransfer": "Transferir",
+    "navHistory": "Historial",
+    "navSettings": "Configuración"
 }

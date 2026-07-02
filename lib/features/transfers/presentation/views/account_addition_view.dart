@@ -120,10 +120,6 @@ class _AccountAdditionViewState extends State<AccountAdditionView> {
               height: 50,
               child: ElevatedButton(
                 onPressed: () {
-                  print(accountType);
-                  print(currencyType);
-                  print(numeroCuentaController.text);
-                  print(isFavorite);
                   context.push('/account_selection/transfers');
                 },
                 child: const Text(
