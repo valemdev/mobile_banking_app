@@ -5,6 +5,7 @@ class UserAccessInfo {
   final String firstName;
   final String lastName;
   final String gender;
+  final String imageUrl;
   final String accessToken;
   final String refreshToken;
 
@@ -15,6 +16,7 @@ class UserAccessInfo {
     required this.firstName,
     required this.lastName,
     required this.gender,
+    required this.imageUrl,
     required this.accessToken,
     required this.refreshToken,
   });
@@ -27,6 +29,7 @@ class UserAccessInfo {
       firstName: json['firstName'],
       lastName: json['lastName'],
       gender: json['gender'],
+      imageUrl: json['image'],
       accessToken: json['accessToken'],
       refreshToken: json['refreshToken'],
     );
