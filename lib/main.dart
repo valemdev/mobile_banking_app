@@ -4,6 +4,7 @@ import 'package:mobile_banking_app/app_router.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mobile_banking_app/core/local_storage.dart';
 import 'package:mobile_banking_app/core/auth/repositories/shared_prefs_token_repository.dart';
+import 'package:mobile_banking_app/core/locale_provider.dart';
 import 'l10n/app_localizations.dart';
 
 late bool _hasValidSession;
