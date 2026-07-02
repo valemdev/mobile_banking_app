@@ -34,6 +34,7 @@ class SharedPrefsTokenRepository implements TokenRepository {
   @override
   Future<void> deleteTokens() async {
     await _prefs.remove(Constants.tokenLocalStorageKey);
+    await _prefs.remove(Constants.userInformationLocalStorageKey);
   }
 
   @override
