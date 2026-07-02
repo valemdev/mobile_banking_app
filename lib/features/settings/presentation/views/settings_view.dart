@@ -41,8 +41,8 @@ class SettingsView extends StatelessWidget {
 
             const SizedBox(height: 30),
 
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
@@ -83,6 +83,14 @@ class SettingsView extends StatelessWidget {
                         context.go('/settings/contact_us');
                       },
                     ),
+                    const Divider(height: 1),
+                    ListTile(
+                      title: const Text("Idioma"),
+                      trailing: const Icon(Icons.chevron_right),
+                      onTap: () {
+                        context.go('/settings/change_language');
+                      },
+                    ),
                   ],
                 ),
               ),
@@ -90,8 +98,8 @@ class SettingsView extends StatelessWidget {
 
             const SizedBox(height: 30),
 
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(

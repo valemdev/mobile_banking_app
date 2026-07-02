@@ -9,10 +9,8 @@ import 'package:mobile_banking_app/features/login/presentation/widgets/password_
 import 'package:mobile_banking_app/features/login/presentation/widgets/primary_button.dart';
 import 'package:mobile_banking_app/l10n/app_localizations.dart';
 
-
-
 class LoginView extends StatelessWidget {
-    const LoginView({super.key});
+  const LoginView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +18,7 @@ class LoginView extends StatelessWidget {
   }
 }
 
-
-
 class _LoginView extends ConsumerWidget {
-
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -41,7 +36,8 @@ class _LoginView extends ConsumerWidget {
               const SizedBox(height: 200),
               Text(
                 AppLocalizations.of(context)!.signIn,
-                style: TextStyle(fontSize: 32, fontWeight: FontWeight.w500),
+                style:
+                    const TextStyle(fontSize: 32, fontWeight: FontWeight.w500),
               ),
               const SizedBox(height: 30),
               Text(AppLocalizations.of(context)!.email_address),
@@ -81,18 +77,20 @@ class _LoginView extends ConsumerWidget {
                     String email = emailController.text;
                     String password = passwordController.text;
 
-                    print('Email: $email, Password: $password');
-                    await ref.read(loginNotifierProvider.notifier).login(email, password);
+                    await ref
+                        .read(loginNotifierProvider.notifier)
+                        .login(email, password);
                     if (!context.mounted) return;
                     final loginState = ref.read(loginNotifierProvider);
-                    if (loginState is LoginSuccessState){
+                    if (loginState is LoginSuccessState) {
                       context.go('/home');
-                    } else if (loginState is LoginErrorState){
+                    } else if (loginState is LoginErrorState) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Error de inicio de sesión: ${loginState.errorMessage}')),
+                        SnackBar(
+                            content: Text(
+                                'Error de inicio de sesión: ${loginState.errorMessage}')),
                       );
                     }
-                    
                   }
                 },
               ),

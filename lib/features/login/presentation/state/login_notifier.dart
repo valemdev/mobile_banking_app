@@ -19,7 +19,6 @@ class LoginNotifier extends StateNotifier<LoginState> {
       await _loginUseCase.call(email, password);
       state = LoginSuccessState(email, password);
     } catch (e) {
-      print('Login failed: $e');
       state = LoginErrorState(email, password, e.toString());
     }
   }

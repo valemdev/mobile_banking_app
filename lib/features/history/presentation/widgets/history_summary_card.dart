@@ -54,7 +54,7 @@ class _SummaryRow extends StatelessWidget {
       children: [
         Text(
           item.label,
-          style: TextStyle(
+          style: const TextStyle(
             color: AppColors.textStrong,
             fontWeight: FontWeight.w500,
           ),

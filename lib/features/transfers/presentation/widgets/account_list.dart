@@ -17,10 +17,7 @@ class AccountList extends StatelessWidget {
       itemCount: accounts.length,
       itemBuilder: (context, index) {
         return ListTile(
-          onTap: () => {
-            print("Cuenta seleccionada: ${accounts[index].number}"),
-            context.go('/account_selection/transfers')
-          },
+          onTap: () => {context.go('/account_selection/transfers')},
           title: Text(accounts[index].name),
           subtitle: Text(accounts[index].number),
         );

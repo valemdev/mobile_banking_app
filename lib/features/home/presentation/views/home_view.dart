@@ -9,6 +9,7 @@ import 'package:mobile_banking_app/features/home/presentation/widgets/action_but
 import 'package:mobile_banking_app/features/home/presentation/widgets/last_transactions.dart';
 import 'package:mobile_banking_app/features/home/presentation/widgets/plastic_card.dart';
 import 'package:mobile_banking_app/features/home/presentation/widgets/welcome.dart';
+import 'package:mobile_banking_app/l10n/app_localizations.dart';
 
 final user = User(
   name: "Jane Smith",
@@ -107,19 +108,19 @@ class HomePage extends StatelessWidget {
                     children: [
                       ActionButton(
                           icon: Icons.arrow_upward,
-                          label: "Enviar",
+                          label: AppLocalizations.of(context)!.send,
                           onTap: () {
                             StatefulNavigationShell.of(context).goBranch(1);
                           }),
                       ActionButton(
                           icon: Icons.arrow_downward,
-                          label: "Recibir",
+                          label: AppLocalizations.of(context)!.receive,
                           onTap: () {
                             StatefulNavigationShell.of(context).goBranch(2);
                           }),
                       ActionButton(
                           icon: Icons.attach_money,
-                          label: "Movimientos",
+                          label: AppLocalizations.of(context)!.movements,
                           onTap: () {
                             StatefulNavigationShell.of(context).goBranch(2);
                           })
@@ -129,12 +130,12 @@ class HomePage extends StatelessWidget {
                 const SizedBox(height: 24),
                 Container(
                   margin: const EdgeInsets.symmetric(horizontal: 24),
-                  child: const Column(
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Cuentas",
-                        style: TextStyle(
+                        AppLocalizations.of(context)!.accounts,
+                        style: const TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                     ],

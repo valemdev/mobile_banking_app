@@ -6,17 +6,17 @@ class HistoryHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
+        Text(
           'Historial de movimientos',
           style: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.w700,
           ),
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 8),
         Text(
           'Selecciona un producto para ver su resumen y movimientos.',
           style: TextStyle(

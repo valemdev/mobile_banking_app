@@ -67,12 +67,7 @@ class _TransferViewState extends State<TransferView> {
             DescriptionField(controller: descriptionController),
             const SizedBox(height: 40),
             TransferButton(
-              onPressed: () {
-                print(debitAccount);
-                print(creditAccount);
-                print(amountController.text);
-                print(descriptionController.text);
-              },
+              onPressed: () {},
             ),
           ],
         ),
