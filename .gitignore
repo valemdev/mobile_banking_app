@@ -46,3 +46,6 @@ app.*.map.json
 
 /ios/
 /macos/
+
+# important files
+firebase_options.dart

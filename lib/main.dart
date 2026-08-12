@@ -6,6 +6,8 @@ import 'package:mobile_banking_app/core/local_storage.dart';
 import 'package:mobile_banking_app/core/auth/repositories/shared_prefs_token_repository.dart';
 import 'package:mobile_banking_app/core/locale_provider.dart';
 import 'l10n/app_localizations.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 late bool _hasValidSession;
 
@@ -13,6 +15,7 @@ bool get hasValidSession => _hasValidSession;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await LocalStorage().init();
 
   final tokenRepository = SharedPrefsTokenRepository();
