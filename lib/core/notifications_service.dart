@@ -2,6 +2,8 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class NotificationsService {
+  static final instance = NotificationsService();
+
   NotificationsService({
     FirebaseMessaging? firebaseMessaging,
     FlutterLocalNotificationsPlugin? localNotifications,
@@ -44,17 +46,24 @@ class NotificationsService {
     });
     print('FCM Token: $token');
 
-    await _initLocalNotifications();
     FirebaseMessaging.onMessage.listen(_foregroundMessageHandler);
+  }
+
+  Future<void> showTransferSentNotification() async {
+    await _showLocalNotification(
+      title: 'Transferencia enviada',
+      body: 'Tu transferencia se ha enviado correctamente.',
+    );
   }
 
   void _foregroundMessageHandler(RemoteMessage message) {
     if (message.notification != null) {
       print('Foreground message received: ${message.notification!.title}');
-      _showLocalNotification(message);
+      _showLocalNotification(
+        title: message.notification!.title,
+        body: message.notification!.body,
+      );
     }
-
-    // Handle the foreground message here
   }
 
   Future<void> _initLocalNotifications() async {
@@ -71,6 +80,11 @@ class NotificationsService {
             AndroidFlutterLocalNotificationsPlugin>()
         ?.createNotificationChannel(canal);
 
+    await _localNotifications
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()
+        ?.requestNotificationsPermission();
+
     await _localNotifications.initialize(
       settings: const InitializationSettings(
         android: AndroidInitializationSettings('@mipmap/ic_launcher'),
@@ -81,11 +95,14 @@ class NotificationsService {
     );
   }
 
-  Future<void> _showLocalNotification(RemoteMessage message) async {
+  Future<void> _showLocalNotification({
+    String? title,
+    String? body,
+  }) async {
     const androidDetails = AndroidNotificationDetails(
-      'default_channel',
-      'General',
-      channelDescription: 'General notifications',
+      'canal_alta_prioridad',
+      'Avisos importantes',
+      channelDescription: 'Notificaciones importantes',
       importance: Importance.max,
       priority: Priority.high,
     );
@@ -94,8 +111,8 @@ class NotificationsService {
 
     await _localNotifications.show(
       id: 0,
-      title: message.notification?.title ?? 'Notificación',
-      body: message.notification?.body ?? 'Esta es una notificación local',
+      title: title ?? 'Notificación',
+      body: body ?? 'Esta es una notificación local',
       notificationDetails: details,
     );
   }

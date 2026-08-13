@@ -18,7 +18,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await LocalStorage().init();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  await NotificationsService().init();
+  await NotificationsService.instance.init();
   final tokenRepository = SharedPrefsTokenRepository();
   _hasValidSession = await tokenRepository.hasValidSession();
 

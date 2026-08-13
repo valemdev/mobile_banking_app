@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_banking_app/core/notifications_service.dart';
 import 'package:mobile_banking_app/features/transfers/presentation/widgets/account_dropdown.dart';
 import 'package:mobile_banking_app/features/transfers/presentation/widgets/amount_field.dart';
 import 'package:mobile_banking_app/features/transfers/presentation/widgets/description_field.dart';
@@ -67,7 +68,10 @@ class _TransferViewState extends State<TransferView> {
             DescriptionField(controller: descriptionController),
             const SizedBox(height: 40),
             TransferButton(
-              onPressed: () {},
+              onPressed: () async {
+                await NotificationsService.instance
+                    .showTransferSentNotification();
+              },
             ),
           ],
         ),
