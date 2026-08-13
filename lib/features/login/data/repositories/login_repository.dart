@@ -23,27 +23,35 @@ class LoginRepositoryImpl implements LoginRepository {
 
   @override
   Future<void> login(String username, String password) async {
-    final tokenAlreadyExists = await _localLoginDataSource.getTokens();
-    if (tokenAlreadyExists != null) {
-      await _localLoginDataSource.deleteTokens();
-      throw Exception('User already logged in');
-    }
+    try {
+      final tokenAlreadyExists = await _localLoginDataSource.getTokens();
+      if (tokenAlreadyExists != null) {
+        await _localLoginDataSource.deleteTokens();
+        throw Exception('User already logged in');
+      }
 
-    final response = await _loginDataSource.login(username, password);
-    final userInfo = User(
-      id: response.id,
-      username: response.username,
-      email: response.email,
-      firstName: response.firstName,
-      lastName: response.lastName,
-      gender: response.gender,
-      imageUrl: response.imageUrl,
-    );
-    final tokens = AuthTokens(
-      accessToken: response.accessToken,
-      refreshToken: response.refreshToken,
-    );
-    await _localLoginDataSource.saveTokens(tokens);
-    await _userInfoRepository.saveUserInfo(userInfo);
+      final response = await _loginDataSource.login(username, password);
+      final userInfo = User(
+        uid: response.uid,
+        username: response.username,
+        email: response.email,
+        firstName: response.firstName,
+        lastName: response.lastName,
+        gender: response.gender,
+        imageUrl: response.imageUrl,
+      );
+      final tokens = AuthTokens(
+        token: response.token,
+      );
+
+      print('Login successful: ${response.username}');
+      await _localLoginDataSource.saveTokens(tokens);
+      print('Tokens saved successfully: ${tokens.token}');
+      await _userInfoRepository.saveUserInfo(userInfo);
+      print('User info saved successfully: ${userInfo.username}');
+    } catch (e) {
+      print('Error in login repository: $e');
+      rethrow;
+    }
   }
 }

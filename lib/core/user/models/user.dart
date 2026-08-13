@@ -1,5 +1,5 @@
 class User {
-  final int id;
+  final String uid;
   final String username;
   final String email;
   final String firstName;
@@ -10,7 +10,7 @@ class User {
   String get name => '$firstName $lastName'.trim();
 
   User({
-    required this.id,
+    required this.uid,
     required this.username,
     required this.email,
     required this.firstName,
@@ -21,7 +21,7 @@ class User {
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
-      id: json['id'] as int,
+      uid: json['uid'] as String,
       username: json['username'] as String,
       email: json['email'] as String,
       firstName: json['firstName'] as String,
@@ -33,7 +33,7 @@ class User {
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
+      'uid': uid,
       'username': username,
       'email': email,
       'firstName': firstName,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mobile_banking_app/features/home/domain/models/account_model.dart';
+import 'package:mobile_banking_app/features/home/domain/entities/account_model.dart';
 
 class AccountList extends StatelessWidget {
   final String searchQuery;

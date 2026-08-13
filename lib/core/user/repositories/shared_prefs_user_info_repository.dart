@@ -22,11 +22,17 @@ class SharedPrefsUserInfoRepository implements UserInfoRepository {
   Future<User?> getUserInfo() async {
     final userJsonString =
         _prefs.getString(Constants.userInformationLocalStorageKey);
-    if (userJsonString != null) {
-      final userJson = jsonDecode(userJsonString) as Map<String, dynamic>;
-      return User.fromJson(userJson);
+    if (userJsonString == null) {
+      return null;
     }
-    return null;
+
+    final decodedUser = jsonDecode(userJsonString);
+    if (decodedUser is! Map<String, dynamic>) {
+      await deleteUserInfo();
+      return null;
+    }
+
+    return User.fromJson(decodedUser);
   }
 
   @override

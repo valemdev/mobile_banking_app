@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mobile_banking_app/app_colors.dart';
-import 'package:mobile_banking_app/features/home/domain/models/plastic_card_model.dart';
+import 'package:mobile_banking_app/features/home/domain/entities/plastic_card_model.dart';
 
 class PlasticCard extends StatelessWidget {
   final PhysicalCard card;

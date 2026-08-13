@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mobile_banking_app/features/home/domain/models/account_model.dart';
-import 'package:mobile_banking_app/features/home/domain/models/las_transaction_model.dart';
-import 'package:mobile_banking_app/features/home/domain/models/plastic_card_model.dart';
-import 'package:mobile_banking_app/features/home/domain/models/user_model.dart';
+import 'package:mobile_banking_app/features/home/domain/entities/account_model.dart';
+import 'package:mobile_banking_app/features/home/domain/entities/las_transaction_model.dart';
+import 'package:mobile_banking_app/features/home/domain/entities/plastic_card_model.dart';
+import 'package:mobile_banking_app/features/home/presentation/state/user_notifier.dart';
+import 'package:mobile_banking_app/features/home/presentation/state/user_state.dart';
 import 'package:mobile_banking_app/features/home/presentation/widgets/account_carousel.dart';
 import 'package:mobile_banking_app/features/home/presentation/widgets/action_button.dart';
 import 'package:mobile_banking_app/features/home/presentation/widgets/last_transactions.dart';
@@ -11,11 +13,11 @@ import 'package:mobile_banking_app/features/home/presentation/widgets/plastic_ca
 import 'package:mobile_banking_app/features/home/presentation/widgets/welcome.dart';
 import 'package:mobile_banking_app/l10n/app_localizations.dart';
 
-final user = User(
-  name: "Jane Smith",
+/* final user = UserEntity(
+  name: "Jane Smitha",
   imageUrl:
       "https://media.istockphoto.com/id/1494508936/es/foto/feliz-emocionado-y-llame-por-tel%C3%A9fono-con-una-mujer-negra-en-el-estudio-para-mensajes-de-texto.jpg?s=2048x2048&w=is&k=20&c=OEIskWFgyI7MNN67gh6zr4227gK9A54C90JNyxCN-Kg=",
-);
+); */
 
 final PhysicalCard card = PhysicalCard(
   cardNumber: "4876 5432 1098 7654",
@@ -68,11 +70,42 @@ final transactionsFromApi = [
 final lastTransactions =
     transactionsFromApi.map((json) => TransactionModel.fromJson(json)).toList();
 
-class HomePage extends StatelessWidget {
+class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
 
   @override
+  ConsumerState<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends ConsumerState<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        ref.read(userNotifierProvider.notifier).fetchUserInfo();
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final userState = ref.watch(userNotifierProvider);
+
+    if (userState is UserLoadingState || userState is UserInitialState) {
+      return const Scaffold(
+        body: Center(child: CircularProgressIndicator()),
+      );
+    }
+
+    if (userState is UserErrorState) {
+      return Scaffold(
+        body: Center(child: Text(userState.errorMessage)),
+      );
+    }
+
+    final user = userState.user;
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -90,8 +123,13 @@ class HomePage extends StatelessWidget {
                         const Spacer(),
                         IconButton(
                           icon: const Icon(Icons.logout),
-                          onPressed: () {
-                            context.go('/');
+                          onPressed: () async {
+                            await ref
+                                .read(userNotifierProvider.notifier)
+                                .logout();
+                            if (context.mounted) {
+                              context.go('/');
+                            }
                           },
                         )
                       ],

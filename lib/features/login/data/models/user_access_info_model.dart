@@ -1,37 +1,34 @@
 class UserAccessInfo {
-  final int id;
+  final String uid;
   final String username;
   final String email;
   final String firstName;
   final String lastName;
   final String gender;
   final String imageUrl;
-  final String accessToken;
-  final String refreshToken;
+  final String token;
 
   UserAccessInfo({
-    required this.id,
+    required this.uid,
     required this.username,
     required this.email,
     required this.firstName,
     required this.lastName,
     required this.gender,
     required this.imageUrl,
-    required this.accessToken,
-    required this.refreshToken,
+    required this.token,
   });
 
   factory UserAccessInfo.fromJson(Map<String, dynamic> json) {
     return UserAccessInfo(
-      id: json['id'],
+      uid: json['uid'],
       username: json['username'],
       email: json['email'],
       firstName: json['firstName'],
       lastName: json['lastName'],
       gender: json['gender'],
       imageUrl: json['image'],
-      accessToken: json['accessToken'],
-      refreshToken: json['refreshToken'],
+      token: json['token'],
     );
   }
 }

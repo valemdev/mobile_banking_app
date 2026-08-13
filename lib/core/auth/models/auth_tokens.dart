@@ -1,23 +1,15 @@
 class AuthTokens {
-  final String accessToken;
-  final String refreshToken;
+  final String token;
 
   const AuthTokens({
-    required this.accessToken,
-    required this.refreshToken,
+    required this.token,
   });
 
   factory AuthTokens.fromJson(Map<String, dynamic> json) {
-    return AuthTokens(
-      accessToken: json['access_token'] as String,
-      refreshToken: json['refresh_token'] as String,
-    );
+    return AuthTokens(token: json['token'] as String);
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'access_token': accessToken,
-      'refresh_token': refreshToken,
-    };
+    return {'token': token};
   }
 }

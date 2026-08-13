@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_banking_app/app_colors.dart';
-import 'package:mobile_banking_app/features/home/domain/models/account_model.dart';
+import 'package:mobile_banking_app/features/home/domain/entities/account_model.dart';
 import 'package:mobile_banking_app/features/home/presentation/widgets/account_card.dart';
 
 class AccountCarousel extends StatefulWidget {
